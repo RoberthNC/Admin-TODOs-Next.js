@@ -12,7 +12,19 @@ docker compose up -d
 
 3. Replace the variables in the string connection
 
-4. Fill the database using seed [executing the endpoint](localhost:3000/api/seed)
+4. Install node dependencies using the command:
+
+```
+npm install
+```
+
+5. Run the project:
+
+```
+npm run dev
+```
+
+6. Fill the database using seed [executing the endpoint](localhost:3000/api/seed)
 
 # Prisma commands
 

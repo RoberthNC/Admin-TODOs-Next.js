@@ -55,7 +55,11 @@ export async function PATCH(request: Request, segments: Segments) {
       where: { id },
       data: { description, complete },
     });
-    return updatedTodo;
+    return NextResponse.json({
+      method: "PATCH",
+      status: 200,
+      data: updatedTodo,
+    });
   } catch (error) {
     return NextResponse.json({
       method: "PATCH",

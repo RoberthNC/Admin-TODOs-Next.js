@@ -1,4 +1,10 @@
 import { Sidebar, TopMenu } from "@/components";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "My Dashboard",
+  description: "Dashboard for TODOs",
+};
 
 export default function DashboardLayout({
   children,

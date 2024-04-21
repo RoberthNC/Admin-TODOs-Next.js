@@ -2,15 +2,27 @@ import Image from "next/image";
 import Link from "next/link";
 import { CiLogout } from "react-icons/ci";
 import { SidebarItem } from "./SidebarItem";
+import {
+  IoCalendarOutline,
+  IoCheckboxOutline,
+  IoListOutline,
+} from "react-icons/io5";
 
 const items = [
   {
+    icon: <IoCalendarOutline size={20} />,
     href: "/dashboard",
     label: "Dashboard",
   },
   {
-    href: "/categories",
-    label: "Categories",
+    icon: <IoCheckboxOutline size={20} />,
+    href: "/dashboard/rest-todos",
+    label: "Rest TODOs",
+  },
+  {
+    icon: <IoListOutline size={20} />,
+    href: "/dashboard/server-todos",
+    label: "Server Actions",
   },
 ];
 

@@ -21,7 +21,7 @@ const items = [
   },
   {
     icon: <IoListOutline size={20} />,
-    href: "/dashboard/server-todos",
+    href: "/dashboard/server-actions",
     label: "Server Actions",
   },
 ];

@@ -17,5 +17,10 @@ const config: Config = {
     },
   },
   plugins: [],
+  safelist: [
+    {
+      pattern: /grid-cols-./,
+    },
+  ],
 };
 export default config;

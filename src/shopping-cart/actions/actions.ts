@@ -18,9 +18,20 @@ export const addProductToCart = (id: string) => {
   setCookie("cart", JSON.stringify(cookieCart));
 };
 
-//TODO: tarea
 export const removeProductFromCart = (id: string) => {
   const cookieCart = getCookieCart();
   delete cookieCart[id];
+  setCookie("cart", JSON.stringify(cookieCart));
+};
+
+export const removeSingleItemFromCart = (id: string) => {
+  const cookieCart = getCookieCart();
+  if (!cookieCart) return;
+  const itemInCart = cookieCart[id] - 1;
+  if (itemInCart <= 0) {
+    delete cookieCart[id];
+  } else {
+    cookieCart[id] = itemInCart;
+  }
   setCookie("cart", JSON.stringify(cookieCart));
 };

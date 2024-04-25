@@ -4,6 +4,9 @@ export const revalidate = 0;
 import prisma from "@/lib/prisma";
 import { Metadata } from "next";
 import { NewTodo, TodosGrid } from "@/todos";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Server TODOs Page",
@@ -11,7 +14,16 @@ export const metadata: Metadata = {
 };
 
 export default async function ServerActionsPage() {
-  const todos = await prisma.todo.findMany();
+  const session = await getServerSession(authOptions);
+  if (!session?.user) {
+    redirect("/api/auth/signin");
+  }
+  const todos = await prisma.todo.findMany({
+    where: {
+      userId: session.user.id,
+    },
+    orderBy: { description: "asc" },
+  });
   return (
     <>
       <span className="text-3xl mb-10">Server Actions</span>

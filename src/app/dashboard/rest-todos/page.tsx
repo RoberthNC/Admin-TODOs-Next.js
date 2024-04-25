@@ -5,6 +5,9 @@ import prisma from "@/lib/prisma";
 import { Metadata } from "next";
 import { TodosGrid } from "@/todos/components/TodosGrid";
 import { NewTodo } from "@/todos/components/NewTodo";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "TODOs list",
@@ -12,7 +15,14 @@ export const metadata: Metadata = {
 };
 
 export default async function RestTodosPage() {
-  const todos = await prisma.todo.findMany({ orderBy: { description: "asc" } });
+  const session = await getServerSession(authOptions);
+  if (!session?.user) {
+    redirect("/api/auth/signin");
+  }
+  const todos = await prisma.todo.findMany({
+    where: { userId: session?.user?.id },
+    orderBy: { description: "asc" },
+  });
   return (
     <div>
       <div className="w-full px-3 mx-5 mb-5">

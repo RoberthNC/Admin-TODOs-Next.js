@@ -35,3 +35,8 @@ npx prisma init
 npx prisma migrate dev
 npx prisma generate
 ```
+
+## Notes:
+
+**user:** test1@google.com
+**password:** 123456
